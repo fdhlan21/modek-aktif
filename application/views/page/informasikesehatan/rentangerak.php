@@ -101,7 +101,7 @@ font-size: 50px;
     </div>
 
     <div class="content-header">
-        <h3>Rentan Gerak</h3>
+        <h3>Rentang Gerak</h3>
     </div>
 
     <div class="content-header">
@@ -120,7 +120,7 @@ font-size: 50px;
 
          <div class="deks-container">
             <div class="deks-title">
-                <h3>Rentan Gerak</h3>
+                <h3>Rentang Gerak</h3>
             </div>
             <div class="deks-paragraf">
                 <p>
