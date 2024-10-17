@@ -88,6 +88,7 @@ font-size: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .btn-simpan {
@@ -128,6 +129,41 @@ font-size: 50px;
         margin-top: 20%; /* Margin lebih besar untuk menghindari header yang tetap */
         
     }
+
+    
+.btn-container {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.btn-simpan {
+    background-color: #6EB2B0;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    width: 380px;
+    border: 0px;
+    padding: 10px;
+
+}
+
+.btn-reset {
+    background-color: #AD6163;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    width: 380px;
+    border: 0px;
+    color: white;
+    padding: 10px;
+}
 
     
 }
@@ -237,64 +273,55 @@ font-size: 50px;
   
   
   <div class="btn-container">
-    <button class="btn-simpan" id="actionButton" onclick="handleAction()">Simpan</button>
+  <button class="btn-simpan" id="saveButton" onclick="saveData()">Simpan</button><br>
+  <button class="btn-reset" id="resetButton" onclick="resetChecklist()" style="display: none;">Reset Checklist</button>
   </div>
       
 
   </div>
 
   <script>
+
 // Fungsi untuk menampilkan atau menyembunyikan radio button
 function toggleRadioButtons(faseId, event) {
-    // Cegah event bubbling jika elemen yang diklik adalah checkbox atau elemen dalam sub-menu
     if (event.target.tagName === 'INPUT' || event.target.closest('.radio-buttons')) return;
 
     var radios = document.getElementById(faseId);
     
-    // Jika menu sudah terbuka, tutup; jika belum, buka
     if (radios.style.display === "block") {
         radios.style.display = "none";
     } else {
         radios.style.display = "block";
     }
 }
-// Fungsi untuk menghitung jumlah checkbox yang tercentang
-function handleAction() {
-    const checkboxes = document.querySelectorAll('.checklist');
-    const checked = Array.from(checkboxes).filter(checkbox => checkbox.checked);
-    
-    if (checked.length === checkboxes.length) {
-        resetChecklist();
-    } else {
-        alert("Data berhasil disimpan.");
-    }
+
+// Fungsi untuk menyimpan data
+function saveData() {
+    alert("Data berhasil disimpan.");
 }
 
 // Fungsi untuk reset semua checkbox
 function resetChecklist() {
     const checkboxes = document.querySelectorAll('.checklist');
     checkboxes.forEach(checkbox => checkbox.checked = false);
-    
-    document.getElementById('actionButton').innerText = 'Simpan';
-    document.getElementById('actionButton').classList.remove('btn-reset');
-    document.getElementById('actionButton').classList.add('btn-simpan');
+
+    document.getElementById('resetButton').style.display = 'none';
 }
 
-// Pantau perubahan checkbox untuk mengganti tombol simpan ke reset
+// Pantau perubahan checkbox untuk menampilkan/menghilangkan tombol reset
 document.querySelectorAll('.checklist').forEach(checkbox => {
     checkbox.addEventListener('change', () => {
         const checkboxes = document.querySelectorAll('.checklist');
         const checked = Array.from(checkboxes).filter(checkbox => checkbox.checked);
 
+        // Jika semua checkbox dicentang, tampilkan tombol reset
         if (checked.length === checkboxes.length) {
-            document.getElementById('actionButton').innerText = 'Reset Checklist';
-            document.getElementById('actionButton').classList.remove('btn-simpan');
-            document.getElementById('actionButton').classList.add('btn-reset');
+            document.getElementById('resetButton').style.display = 'inline-block';
         } else {
-            document.getElementById('actionButton').innerText = 'Simpan';
-            document.getElementById('actionButton').classList.remove('btn-reset');
-            document.getElementById('actionButton').classList.add('btn-simpan');
+            document.getElementById('resetButton').style.display = 'none';
         }
     });
 });
+
+
 </script>
